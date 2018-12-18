@@ -1,0 +1,37 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "Language interpretation Interface for music and movies",
+  "main": "liriMain.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rand0819/liri-node-app.git"
+  },
+  "keywords": [
+    "Spotify",
+    "Siri",
+    "OMDB",
+    "Liri",
+    "Node",
+    "Bands",
+    "In",
+    "Town",
+    "Music",
+    "concerts"
+  ],
+  "author": "Robert Anderson",
+  "license": "ISC",
+  "dependencies": {
+    "node-spotify-api": "^1.0.7",
+    "axios": "^0.18.0",
+    "moment": "^2.23.0",
+    "dotenv": "^6.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/rand0819/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/rand0819/liri-node-app#readme"
+}
