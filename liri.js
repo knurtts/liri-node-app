@@ -3,71 +3,118 @@ var axios = require("axios");
 const Spotify = require("node-spotify-api");
 const fs = require("fs");
 var keys = require("./keys");
-
+const moment = require("moment");
 var spotify = new Spotify(keys.spotify);
 
 var search = process.argv[2];
 var term = process.argv.slice(3).join(" ");
 
 if (search == "concert-this") {
-    console.log("find"+term+"in Bands in Town API");
+    // console.log("find "+term+" in Bands in Town API");
 
-    console.log("log the Venue Name, Location, date of event MM/DD/YYYY");   
+    axios.get("https://rest.bandsintown.com/artists/" + term + "/events?app_id=codingbootcamp")
+        .then(function (res) {
+
+            var showData = res.data[0];
+            if (!showData) {
+                console.log("---------------");
+                console.log("Sorry, I couldn't find anything. Please try again.");
+                console.log("---------------");
+            } else {
+                var showTime = moment(showData.datetime).calendar();
+
+                var displayData = `---------------
+Venue: ${showData.venue.name}
+Location: ${showData.venue.city}, ${showData.venue.region} ${showData.venue.country}
+Date: ${showTime}
+---------------`;
+
+                console.log("Here is the next show that " + term + " is playing:");
+                console.log(displayData);
+            };
+        });
 
 } else if (search == "spotify-this-song") {
-    // if nothing is found default to The Sign by Ace of Base
 
-    function doTheSpotify(term) {spotify.search({
-        type: 'track', 
-        query: term
-    }).then(function(response) {
+    function doTheSpotify(term) {
+        spotify.search({
+            type: 'track',
+            query: term
+        }).then(function (response) {
 
-        var track = response.tracks.items[0];
+            var track = response.tracks.items[0];
 
-        if (track == null) {
-            term = "The Sign Ace of Base"; 
-            doTheSpotify(term);
-            // console.log("Alt track");
-        } else {
-            
-        var infoLog = `------------
+            if (track == null) {
+                term = "The Sign Ace of Base";
+                doTheSpotify(term);
+            } else {
+
+                var infoLog = `------------
 Artist: ${track.album.artists[0].name}
 Album: ${track.album.name}
 Track Name: ${track.name}
 Preview: ${track.preview_url}
 ------------`;
-                
-            fs.appendFile("log.txt", infoLog, function(err){
-                if (err) {
-                    return console.log(err);
-                }        
-                console.log(infoLog);        
+
+                fs.appendFile("log.txt", infoLog, function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log(infoLog);
                 });
-        }
-    }).catch(function(err) {
-    console.log(err);
-    });
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
     };
 
     doTheSpotify(term);
 
 } else if (search == "movie-this") {
-    console.log(`Use OMDB app to log
-    Title of movie
-    Year
-    IMDB Rating
-    Rotten Tomatoes Rating
-    Country of production
-    Language
-    Plot
-    Cast
-    `);
 
-    console.log("If no movie is found, output data for Mr. Nobody.");   
+    function doTheMovie(term) {
+        var URL = "http://www.omdbapi.com/?t=" + term + "&y=&plot=short&apikey=trilogy";
+        axios.get(URL).then(
+            function (response) {                
+                if (response.data.Response == "False") {
+                    term = "Mr. Nobody";
+                    doTheMovie(term);
+                } else {
+                var movie = response.data;
+                var imdb = movie.Ratings[0];
+                var rotten = movie.Ratings[1];
+                var showMovie = `---------------
+Title: ${movie.Title}
+Year: ${movie.Year}
+IMDB Rating: ${imdb.Value}
+Rotten Tomatoes Score: ${rotten.Value}
+Country: ${movie.Country}
+Language: ${movie.Language}
+Plot: ${movie.Plot}
+Cast: ${movie.Actors}
+---------------`;
+                console.log(showMovie);
+                };
+            }
+        )
+    };
+
+    doTheMovie(term);
+
+    // console.log("If no movie is found, output data for Mr. Nobody.");   
 
 } else if (search == "do-what-it-says") {
     //Use what is written in random.txt to pull song info via Spotify
     console.log("Find song from random.txt");
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        var dataArr = data.split(",");
+        term = dataArr[1];
+        doTheSpotify(term);
+        
+    });
 
 } else {
     console.log("-------------------");
@@ -78,18 +125,3 @@ Preview: ${track.preview_url}
 
     console.log("Please try again.");
 };
-
-
-
-// "artists": [
-//     {
-//       "external_urls": {
-//         "spotify": "https://open.spotify.com/artist/1FQ6uth7icR6Jhla16K2vC"
-//       },
-//       "href": "https://api.spotify.com/v1/artists/1FQ6uth7icR6Jhla16K2vC",
-//       "id": "1FQ6uth7icR6Jhla16K2vC",
-//       "name": "The Faceless",
-//       "type": "artist",
-//       "uri": "spotify:artist:1FQ6uth7icR6Jhla16K2vC"
-//     }
-//   ]
