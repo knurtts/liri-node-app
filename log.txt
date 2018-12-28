@@ -48,4 +48,34 @@ Artist: Mariah Carey
 Album: Merry Christmas
 Track Name: All I Want for Christmas Is You
 Preview: https://p.scdn.co/mp3-preview/ab4f06069148ef8510d8681164479601d4617bed?cid=542abec1e62e4908b5b2aa6f313c1477
+------------------------
+Artist: Betraying The Martyrs
+Album: Phantom
+Track Name: Let It Go
+Preview: https://p.scdn.co/mp3-preview/fbba739257654db61b12bdd386bf6ac9a6ba5e7f?cid=542abec1e62e4908b5b2aa6f313c1477
+------------------------
+Artist: 311
+Album: Greatest Hits '93 - '03
+Track Name: Amber
+Preview: https://p.scdn.co/mp3-preview/45c9f2e372726deb5e8d3e39786de1a2e9f299f3?cid=542abec1e62e4908b5b2aa6f313c1477
+------------------------
+Artist: Mike WiLL Made-It
+Album: Creed II: The Album
+Track Name: Shea Butter Baby (with J. Cole)
+Preview: null
+------------------------
+Artist: Bill Withers
+Album: Just As I Am
+Track Name: Ain't No Sunshine
+Preview: https://p.scdn.co/mp3-preview/2f56920743ab7da6d3d6331868dd23bbe72cd063?cid=542abec1e62e4908b5b2aa6f313c1477
+------------------------
+Artist: John Murphy
+Album: Sunshine (Adagio in D Minor)
+Track Name: Sunshine (Adagio in D Minor)
+Preview: https://p.scdn.co/mp3-preview/092eeed1e71b8d89834024dc04c14dff6723da89?cid=542abec1e62e4908b5b2aa6f313c1477
+------------------------
+Artist: Insomnium
+Album: Shadows of the Dying Sun
+Track Name: While We Sleep
+Preview: https://p.scdn.co/mp3-preview/c6b6bad6413c7ebc04355f3d22af8a28a8409754?cid=542abec1e62e4908b5b2aa6f313c1477
 ------------
