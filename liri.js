@@ -17,7 +17,7 @@ if (search == "concert-this") {
             var showData = res.data[0];
             if (!showData) {
                 console.log("---------------");
-                console.log("Sorry, I couldn't find anything. Please try again.");
+                console.log("Sorry, I couldn't find anything. This artist may not be on tour.");
                 console.log("---------------");
             } else {
                 var showTime = moment(showData.datetime).calendar();

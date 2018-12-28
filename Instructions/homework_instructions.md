@@ -84,7 +84,7 @@ SPOTIFY_SECRET=your-spotify-secret
      * spotify-this-song,"I Want it That Way"
 
 6. Make a JavaScript file named `liri.js`.
-
+ 
 7. At the top of the `liri.js` file, add code to read and set any environment variables with the dotenv package:
 
 ```js
