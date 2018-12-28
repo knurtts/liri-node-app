@@ -10,7 +10,6 @@ var search = process.argv[2];
 var term = process.argv.slice(3).join(" ");
 
 if (search == "concert-this") {
-    // console.log("find "+term+" in Bands in Town API");
 
     axios.get("https://rest.bandsintown.com/artists/" + term + "/events?app_id=codingbootcamp")
         .then(function (res) {
@@ -35,38 +34,6 @@ Date: ${showTime}
         });
 
 } else if (search == "spotify-this-song") {
-
-    function doTheSpotify(term) {
-        spotify.search({
-            type: 'track',
-            query: term
-        }).then(function (response) {
-
-            var track = response.tracks.items[0];
-
-            if (track == null) {
-                term = "The Sign Ace of Base";
-                doTheSpotify(term);
-            } else {
-
-                var infoLog = `------------
-Artist: ${track.album.artists[0].name}
-Album: ${track.album.name}
-Track Name: ${track.name}
-Preview: ${track.preview_url}
-------------`;
-
-                fs.appendFile("log.txt", infoLog, function (err) {
-                    if (err) {
-                        return console.log(err);
-                    }
-                    console.log(infoLog);
-                });
-            }
-        }).catch(function (err) {
-            console.log(err);
-        });
-    };
 
     doTheSpotify(term);
 
@@ -101,16 +68,14 @@ Cast: ${movie.Actors}
 
     doTheMovie(term);
 
-    // console.log("If no movie is found, output data for Mr. Nobody.");   
-
 } else if (search == "do-what-it-says") {
-    //Use what is written in random.txt to pull song info via Spotify
+
     console.log("Find song from random.txt");
     fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
             return console.log(error);
         }
-        var dataArr = data.split(",");
+        var dataArr = data.split(" ");
         term = dataArr[1];
         doTheSpotify(term);
         
@@ -124,4 +89,36 @@ Cast: ${movie.Actors}
     console.log("Make sure to use all lower case letters.");
 
     console.log("Please try again.");
+};
+
+function doTheSpotify(term) {
+    spotify.search({
+        type: 'track',
+        query: term
+    }).then(function (response) {
+
+        var track = response.tracks.items[0];
+
+        if (track == null) {
+            term = "The Sign Ace of Base";
+            doTheSpotify(term);
+        } else {
+
+            var infoLog = `------------
+Artist: ${track.album.artists[0].name}
+Album: ${track.album.name}
+Track Name: ${track.name}
+Preview: ${track.preview_url}
+------------`;
+
+            fs.appendFile("log.txt", infoLog, function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(infoLog);
+            });
+        }
+    }).catch(function (err) {
+        console.log(err);
+    });
 };
