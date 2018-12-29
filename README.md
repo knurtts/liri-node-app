@@ -37,3 +37,8 @@ SPOTIFY_SECRET=your-spotify-secret
 - To use this feature, type `movie-this` followed by the movie you would like to know about
 
 ![screenshot of OMDB search command](images/OMDBsearch.jpg)
+
+## Roll the dice!
+- Try typing `do-what-it-says` as the command!
+
+This project was created by and is maintianed by Robert Anderson
