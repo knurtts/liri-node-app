@@ -23,20 +23,20 @@ SPOTIFY_SECRET=your-spotify-secret
 - After the inital commands, type 'spotify-this-song' and then the song or artist you are looking for
     - Following the "Preview" link will open your browser and show you a preview of the song
 
-![screenshot of liri song command](images/spotifySong.jpg)
+![screenshot of liri song command](/spotifySong.JPG)
 
 ## Finding concerts
 - This feature searches for the next upcoming show for touring artists using the Bands In Town API
     - Note that this will not work for artists who are not on tour
 - To use this feature, type `concert-this` followed by the artist whose show you would like to see
 
-![screenshot of Bands In Town command](images/concertSearch.jpg)
+![screenshot of Bands In Town command](/concertSearch.jpg)
 
 ## Finding Movie Information
 - This feature searches for movies using the OMDB API
 - To use this feature, type `movie-this` followed by the movie you would like to know about
 
-![screenshot of OMDB search command](images/OMDBsearch.jpg)
+![screenshot of OMDB search command](/OMDBsearch.jpg)
 
 ## Roll the dice!
 - Try typing `do-what-it-says` as the command!
